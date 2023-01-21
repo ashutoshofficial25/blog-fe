@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
 import BlogCard from "../../components/BlogCard";
 import { getAllBlogs } from "../../services/blogServices";
 
 const Home = () => {
+  const [blogs, setBlogs] = useState([]);
   const fetchAllBlogs = async () => {
-    await getAllBlogs();
+    const { data } = await getAllBlogs();
+
+    setBlogs(data);
   };
 
   useEffect(() => {
@@ -13,13 +17,9 @@ const Home = () => {
 
   return (
     <div className="flex flex-wrap justify-center gap-10 my-20 mx-20">
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
-      <BlogCard />
+      {blogs.length
+        ? blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)
+        : ""}
     </div>
   );
 };
