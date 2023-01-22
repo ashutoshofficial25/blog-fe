@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import IconButton from "../../components/IconButton";
 import { getBlogDetails } from "../../services/blogServices";
+import homeIcon from "../../static/home.png";
 
 const BlogPage = () => {
   const [blogDetail, setBlogDetail] = useState(null);
@@ -27,7 +28,7 @@ const BlogPage = () => {
     <div className="blog mx-20 my-10 relative">
       <Link to="/" className="fixed top-28 left-20 ">
         {" "}
-        <IconButton title="home" />
+        <IconButton image={homeIcon} />
       </Link>
       {blogDetail ? (
         <>

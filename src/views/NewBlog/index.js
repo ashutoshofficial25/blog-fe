@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import IconButton from "../../components/IconButton";
 import { addNewBlog } from "../../services/blogServices";
 import { uploadImage } from "../../services/fileUpoload";
+import homeIcon from "../../static/home.png";
 
 const NewBlog = () => {
   const [content, setContent] = useState("");
@@ -42,7 +43,7 @@ const NewBlog = () => {
     <div className="new-blog mt-16 px-28" data-color-mode="dark">
       <Link to="/" className="fixed top-20 left-10 ">
         {" "}
-        <IconButton title="home" />
+        <IconButton image={homeIcon} />
       </Link>
 
       <Formik onSubmit={handleBlogSubmit} initialValues={initialState}>

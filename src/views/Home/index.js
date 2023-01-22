@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import BlogCard from "../../components/BlogCard";
 import IconButton from "../../components/IconButton";
 import { getAllBlogs } from "../../services/blogServices";
+import createIcon from "../../static/create.png";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
@@ -23,7 +24,7 @@ const Home = () => {
         ? blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)
         : ""}
       <Link to="/newblog" className="fixed bottom-10 right-10 ">
-        <IconButton title="add blog" />
+        <IconButton image={createIcon} />
       </Link>{" "}
     </div>
   );
