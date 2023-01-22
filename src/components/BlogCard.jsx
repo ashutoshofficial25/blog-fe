@@ -15,7 +15,7 @@ const BlogCard = ({ blog }) => {
         />
         <div className="card-title text-xl pt-2 font-bold">{blog.title}</div>
         <article className="px-3 py-2 w-56 font-semibold">
-          <p>{blog.content.substring(0, 50)}</p>
+          <p>{blog.description}</p>
         </article>
       </Link>
     </div>

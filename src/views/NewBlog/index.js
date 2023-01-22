@@ -1,6 +1,8 @@
 import MDEditor from "@uiw/react-md-editor";
 import { Formik } from "formik";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import IconButton from "../../components/IconButton";
 import { addNewBlog } from "../../services/blogServices";
 import { uploadImage } from "../../services/fileUpoload";
 
@@ -10,7 +12,7 @@ const NewBlog = () => {
 
   const initialState = {
     title: "",
-    subtitle: "",
+    description: "",
     content: "",
     thumbnail: "",
   };
@@ -38,6 +40,11 @@ const NewBlog = () => {
 
   return (
     <div className="new-blog mt-16 px-28" data-color-mode="dark">
+      <Link to="/" className="fixed top-20 left-10 ">
+        {" "}
+        <IconButton title="home" />
+      </Link>
+
       <Formik onSubmit={handleBlogSubmit} initialValues={initialState}>
         {({ handleChange, values, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
@@ -56,16 +63,16 @@ const NewBlog = () => {
             />
 
             <label className="text-xl text-gray-600 mt-5">
-              Subtitle <span className="text-red-500">*</span>
+              Description <span className="text-red-500">*</span>
             </label>
             <br />
             <input
               type="text"
               className="border-2 border-gray-300 p-2 px-5 w-full mb-3"
-              name="subtitle"
-              value={values.subtitle}
+              name="description"
+              value={values.description}
               onChange={handleChange}
-              id="subtitle"
+              id="  "
               required
             />
 

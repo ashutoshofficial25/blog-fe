@@ -7,7 +7,7 @@ import NewBlog from "./views/NewBlog";
 
 function App() {
   return (
-    <div className="font-sans" data-color-mode="light">
+    <div className="font-sans " data-color-mode="light">
       <BrowserRouter>
         <Navbar />
 

@@ -1,6 +1,7 @@
 import MDEditor from "@uiw/react-md-editor";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import IconButton from "../../components/IconButton";
 import { getBlogDetails } from "../../services/blogServices";
 
 const BlogPage = () => {
@@ -23,7 +24,11 @@ const BlogPage = () => {
   }, [id]);
 
   return (
-    <div className="blog mx-20 my-10">
+    <div className="blog mx-20 my-10 relative">
+      <Link to="/" className="fixed top-28 left-20 ">
+        {" "}
+        <IconButton title="home" />
+      </Link>
       {blogDetail ? (
         <>
           <h1 className="text-2xl font-bold text-center">Blogpost title</h1>

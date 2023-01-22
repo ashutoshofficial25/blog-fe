@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import BlogCard from "../../components/BlogCard";
+import IconButton from "../../components/IconButton";
 import { getAllBlogs } from "../../services/blogServices";
 
 const Home = () => {
@@ -16,10 +18,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-wrap justify-center gap-10 my-20 mx-20">
+    <div className="flex relative flex-wrap justify-center gap-10 my-20 mx-20">
       {blogs.length
         ? blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)
         : ""}
+      <Link to="/newblog" className="fixed bottom-10 right-10 ">
+        <IconButton title="add blog" />
+      </Link>{" "}
     </div>
   );
 };
