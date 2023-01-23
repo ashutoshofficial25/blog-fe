@@ -4,24 +4,27 @@ import { getImage } from "../services/blogServices";
 
 const BlogCard = ({ blog }) => {
   console.log(blog);
-  //need of 
-  
+  //need of
 
   return (
-
     // https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <Link to={`/blog/${blog._id}`} className="content ">
-      <img className="w-full" src='http://localhost:3008/uploads/blogImages/pho.jpeg' alt={blog.title} />
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{blog.title}</div>
-        <p className="text-gray-700 text-base">
-          {blog.description}
-        </p>
-      </div>
+        <img
+          className="w-full"
+          src={
+            blog.thumbnail
+              ? `http://localhost:3008/uploads/blogImages/${blog.thumbnail}`
+              : "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+          }
+          alt={blog.title}
+        />
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">{blog.title}</div>
+          <p className="text-gray-700 text-base">{blog.description}</p>
+        </div>
       </Link>
     </div>
-   
   );
 };
 
