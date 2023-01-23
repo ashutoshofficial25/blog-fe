@@ -35,8 +35,12 @@ const BlogPage = () => {
           <h1 className="text-2xl font-bold text-center">Blogpost title</h1>
 
           <img
-            className="h-48  mt-6 m-auto"
-            src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+            className="w-full"
+            src={
+              blog.thumbnail
+                ? `http://localhost:3008/uploads/blogImages/${blog.thumbnail}`
+                : "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+            }
             alt="image of the blog"
           />
           <article className="px-20 pt-10 text-xl tracking-wide">
@@ -44,7 +48,7 @@ const BlogPage = () => {
           </article>
         </>
       ) : (
-        ""
+        <h2 className="text-center text-gray-500">Loading...</h2>
       )}
     </div>
   );

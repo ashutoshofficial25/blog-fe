@@ -20,9 +20,11 @@ const Home = () => {
 
   return (
     <div className="flex relative flex-wrap justify-center gap-10 my-20 mx-20">
-      {blogs.length
-        ? blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)
-        : ""}
+      {blogs.length ? (
+        blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)
+      ) : (
+        <h2 className="text-center text-gray-500">Loading...</h2>
+      )}
       <Link to="/newblog" className="fixed bottom-10 right-10 ">
         <IconButton image={createIcon} />
       </Link>{" "}
