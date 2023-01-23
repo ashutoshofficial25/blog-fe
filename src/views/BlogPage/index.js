@@ -32,17 +32,22 @@ const BlogPage = () => {
       </Link>
       {blogDetail ? (
         <>
-          <h1 className="text-2xl font-bold text-center">Blogpost title</h1>
+          <h1 className="text-2xl font-bold text-center my-10">
+            {blogDetail.title}
+          </h1>
 
-          <img
-            className="w-full"
-            src={
-              blogDetail.thumbnail
-                ? `http://localhost:3008/uploads/blogImages/${blogDetail.thumbnail}`
-                : "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-            }
-            alt="image of the blog"
-          />
+          <div className="flex justify-center">
+            <img
+              className="w-auto h-80"
+              src={
+                blogDetail.thumbnail
+                  ? `http://localhost:3008/uploads/blogImages/${blogDetail.thumbnail}`
+                  : "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+              }
+              alt="image of the blog"
+            />
+          </div>
+
           <article className="px-20 pt-10 text-xl tracking-wide">
             <MDEditor.Markdown source={blogDetail.content} />
           </article>

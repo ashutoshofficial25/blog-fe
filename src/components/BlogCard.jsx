@@ -8,7 +8,7 @@ const BlogCard = ({ blog }) => {
 
   return (
     // https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="max-w-sm rounded overflow-hidden shadow-xl hover:shadow-2xl">
       <Link to={`/blog/${blog._id}`} className="content ">
         <img
           className="w-full"
