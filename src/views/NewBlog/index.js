@@ -19,30 +19,31 @@ const NewBlog = () => {
     thumbnail: "",
   };
 
-  const [state, setState] = useState(initialState);
-
   const uploadThumbnail = async (e) => {
     let formdata = new FormData();
     let file = e.target.files[0];
     setThumbnail(file.name);
     formdata.append("file", file);
 
-    console.log("log: image", formdata);
-
-    await uploadImage(formdata);
+    try {
+      await uploadImage(formdata);
+    } catch (error) {
+      console.log("log: error", error);
+    }
   };
 
   const handleBlogSubmit = async (formdata) => {
     formdata.content = content;
     formdata.thumbnail = thumbnail;
     console.log("form submitted", formdata);
-    const data = await addNewBlog(formdata);
-
-    if (data) {
-      navigate("/");
+    try {
+      const data = await addNewBlog(formdata);
+      if (data) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("error", error);
     }
-
-    console.log("log: response", data);
   };
 
   return (

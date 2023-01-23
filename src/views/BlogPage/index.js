@@ -13,10 +13,14 @@ const BlogPage = () => {
 
   const fetchBlogDetail = async () => {
     if (id) {
-      const { data } = await getBlogDetails(id);
-      setBlogDetail(data);
+      try {
+        const { data } = await getBlogDetails(id);
+        setBlogDetail(data);
 
-      console.log(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -25,8 +29,8 @@ const BlogPage = () => {
   }, [id]);
 
   return (
-    <div className="blog mx-20 my-10 relative">
-      <Link to="/" className="fixed top-28 left-20 ">
+    <div className="blog mx-20 my-10 relative max-sm:m-10">
+      <Link to="/" className="fixed top-28 left-20 max-sm:top-12 max-sm:left-8">
         {" "}
         <IconButton image={homeIcon} />
       </Link>

@@ -9,9 +9,13 @@ import createIcon from "../../static/create.png";
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
   const fetchAllBlogs = async () => {
-    const { data } = await getAllBlogs();
+    try {
+      const { data } = await getAllBlogs();
 
-    setBlogs(data);
+      setBlogs(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -19,7 +23,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex relative flex-wrap justify-center gap-10 my-20 mx-20">
+    <div className="flex relative flex-wrap justify-center gap-10  m-20 max-sm:m-10">
       {blogs.length == 0 ? (
         <h2 className="text-center text-gray-500">No blogs found</h2>
       ) : (
