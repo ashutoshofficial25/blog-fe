@@ -25,7 +25,9 @@ const Home = () => {
   return (
     <div className="flex relative flex-wrap justify-center gap-10  m-20 max-sm:m-10">
       {blogs.length == 0 ? (
-        <h2 className="text-center text-gray-500">No blogs found</h2>
+        <h2 className="text-center text-gray-500 text-2xl font-bold!">
+          No blogs found
+        </h2>
       ) : (
         blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)
       )}
