@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { getImage } from "../services/blogServices";
+import { constants } from "../config/config";
 
 const BlogCard = ({ blog }) => {
   console.log(blog);
@@ -14,7 +15,7 @@ const BlogCard = ({ blog }) => {
           className="w-full"
           src={
             blog.thumbnail
-              ? `http://localhost:3008/uploads/blogImages/${blog.thumbnail}`
+              ? `${constants.IMG_URL}/uploads/blogImages/${blog.thumbnail}`
               : "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
           }
           alt={blog.title}

@@ -2,6 +2,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import IconButton from "../../components/IconButton";
 import { addNewBlog } from "../../services/blogServices";
 import { uploadImage } from "../../services/fileUpoload";
@@ -33,6 +34,7 @@ const NewBlog = () => {
   };
 
   const handleBlogSubmit = async (formdata) => {
+    console.log("log:  hello");
     formdata.content = content;
     formdata.thumbnail = thumbnail;
     console.log("form submitted", formdata);
@@ -40,6 +42,13 @@ const NewBlog = () => {
       const data = await addNewBlog(formdata);
       if (data) {
         navigate("/");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your blog posted!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     } catch (error) {
       console.log("error", error);
