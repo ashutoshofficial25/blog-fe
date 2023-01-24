@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Button from "../../components/Button";
 import IconButton from "../../components/IconButton";
 import { addNewBlog } from "../../services/blogServices";
 import { uploadImage } from "../../services/fileUpoload";
@@ -115,12 +116,13 @@ const NewBlog = () => {
             {/* <MDEditor.Markdown source={value} style={{ whiteSpace: "pre-wrap" }} /> */}
 
             <div className="text-center my-5">
-              <button
+              <Button type="submit">Submit</Button>
+              {/* <button
                 type="submit"
                 className="btn btn-primary border py-2 px-4 border-slate-500 w-full hover:bg-slate-500 duration-1000 bg-slate-300 rounded-xl"
               >
                 Submit
-              </button>
+              </button> */}
             </div>
           </form>
         )}
