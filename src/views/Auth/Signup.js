@@ -1,18 +1,43 @@
 import { Formik } from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { SignupSchema } from "../../schemas/signupSchema";
+import { signup } from "../../services/authServices";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const initialState = {
     fullname: "",
     email: "",
     password: "",
   };
 
-  const handleSignup = (formdata) => {
-    console.log("log: ", formdata);
+  const handleSignup = async (formdata) => {
+    const data = await signup(formdata);
+
+    if (data.error) {
+      return Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: data.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Signed up Success, Please Login..!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/login");
   };
+
   return (
     <div className="bg-gray-200 min-h-screen flex flex-col justify-center">
       <div className="w-full max-w-md mx-auto px-5">

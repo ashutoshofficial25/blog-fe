@@ -1,15 +1,48 @@
 import { Formik } from "formik";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import Button from "../../components/Button";
+import { userLogin } from "../../feature/userSlice";
+import { login } from "../../services/authServices";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const initialState = {
     email: "",
     password: "",
   };
 
-  const handleLogin = () => {};
+  const handleLogin = async (formdata) => {
+    const user = await login(formdata);
+
+    console.log(user);
+    if (user.error) {
+      return Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: user.message,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+    dispatch(
+      userLogin({
+        user: user.data,
+      })
+    );
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Logedin Successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/");
+  };
 
   return (
     <div className="bg-gray-200 min-h-screen flex flex-col justify-center">
@@ -31,6 +64,8 @@ const Login = () => {
                 <input
                   className="w-full border border-gray-400 p-2 rounded-lg"
                   type="email"
+                  value={values.email}
+                  onChange={handleChange}
                   id="email"
                   placeholder="Email"
                 />
@@ -45,6 +80,8 @@ const Login = () => {
                 <input
                   className="w-full border border-gray-400 p-2 rounded-lg"
                   type="password"
+                  value={values.password}
+                  onChange={handleChange}
                   id="password"
                   placeholder="Password"
                 />
