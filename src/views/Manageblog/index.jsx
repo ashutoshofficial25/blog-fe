@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Loading from "../../Loading";
-import { deleteBlog, getAllBlogs } from "../../services/blogServices";
-
-const data = [
-  { id: 1, title: "The idea is to place title here in this secton" },
-  { id: 2, title: "Data 2" },
-  { id: 3, title: "Data 3" },
-  { id: 4, title: "Data 4" },
-  { id: 5, title: "Data 5" },
-];
+import { deleteBlog, getBlogByUserId } from "../../services/blogServices";
 
 const Manageblogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await getAllBlogs();
-      setBlogs(data);
-      setLoading(false);
-      console.log("log:", data);
+      if (user) {
+        const { data } = await getBlogByUserId(user.user._id);
+        setBlogs(data);
+        setLoading(false);
+        console.log("log:", data);
+      }
     }
 
     fetchData();
-  }, []);
+  }, [user]);
 
   const handleDelete = async (id) => {
     try {

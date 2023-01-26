@@ -1,6 +1,7 @@
 import MDEditor from "@uiw/react-md-editor";
 import { Formik } from "formik";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Button from "../../components/Button";
@@ -13,12 +14,14 @@ const NewBlog = () => {
   const [content, setContent] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
 
   const initialState = {
     title: "",
     description: "",
     content: "",
     thumbnail: "",
+    userId: "",
   };
 
   const uploadThumbnail = async (e) => {
@@ -38,6 +41,7 @@ const NewBlog = () => {
     console.log("log:  hello");
     formdata.content = content;
     formdata.thumbnail = thumbnail;
+    formdata.userId = user.user._id;
     console.log("form submitted", formdata);
     try {
       const data = await addNewBlog(formdata);
