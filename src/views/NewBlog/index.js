@@ -58,11 +58,6 @@ const NewBlog = () => {
 
   return (
     <div className="new-blog mt-16 px-28" data-color-mode="dark">
-      <Link to="/" className="fixed top-20 left-10 ">
-        {" "}
-        <IconButton image={homeIcon} />
-      </Link>
-
       <Formik onSubmit={handleBlogSubmit} initialValues={initialState}>
         {({ handleChange, values, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
@@ -116,13 +111,12 @@ const NewBlog = () => {
             {/* <MDEditor.Markdown source={value} style={{ whiteSpace: "pre-wrap" }} /> */}
 
             <div className="text-center my-5">
-              <Button type="submit">Submit</Button>
-              {/* <button
+              <button
                 type="submit"
-                className="btn btn-primary border py-2 px-4 border-slate-500 w-full hover:bg-slate-500 duration-1000 bg-slate-300 rounded-xl"
+                className="btn btn-primary border py-2 px-4  w-full duration-1000 bg-indigo-500 rounded-xl"
               >
                 Submit
-              </button> */}
+              </button>
             </div>
           </form>
         )}

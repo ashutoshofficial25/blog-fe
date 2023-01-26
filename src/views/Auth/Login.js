@@ -1,10 +1,11 @@
-import { Formik } from "formik";
+import { ErrorMessage, Field, Formik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Button from "../../components/Button";
 import { userLogin } from "../../feature/userSlice";
+import { loginSchema } from "../../schemas/loginSchema";
 import { login } from "../../services/authServices";
 
 const Login = () => {
@@ -17,21 +18,22 @@ const Login = () => {
   };
 
   const handleLogin = async (formdata) => {
-    const user = await login(formdata);
+    const data = await login(formdata);
 
-    console.log(user);
-    if (user.error) {
+    console.log(data);
+    if (data.error) {
       return Swal.fire({
         position: "top-end",
         icon: "error",
-        title: user.message,
+        title: data.message,
         showConfirmButton: false,
         timer: 1500,
       });
     }
+    localStorage.setItem("token", data.token);
     dispatch(
       userLogin({
-        user: user.data,
+        user: data.user,
       })
     );
     Swal.fire({
@@ -47,8 +49,19 @@ const Login = () => {
   return (
     <div className="bg-gray-200 min-h-screen flex flex-col justify-center">
       <div className="w-full max-w-xs mx-auto">
-        <Formik initialValues={initialState} onSubmit={handleLogin}>
-          {({ handleChange, handleSubmit, handleBlur, values }) => (
+        <Formik
+          initialValues={initialState}
+          onSubmit={handleLogin}
+          validationSchema={loginSchema}
+        >
+          {({
+            handleChange,
+            handleSubmit,
+            handleBlur,
+            values,
+            errors,
+            touched,
+          }) => (
             <form
               className="bg-white p-6 rounded-lg shadow-md"
               onSubmit={handleSubmit}
@@ -61,13 +74,23 @@ const Login = () => {
                 >
                   Email
                 </label>
-                <input
-                  className="w-full border border-gray-400 p-2 rounded-lg"
+                <Field
+                  className={`${
+                    touched.email && errors.email
+                      ? "border-red-500 outline-red-500"
+                      : "border-gray-400"
+                  }  w-full border  p-2 rounded-lg`}
                   type="email"
                   value={values.email}
                   onChange={handleChange}
                   id="email"
                   placeholder="Email"
+                  required
+                />
+                <ErrorMessage
+                  component="div"
+                  name="email"
+                  className="text-red-500"
                 />
               </div>
               <div className="mb-4">
@@ -77,13 +100,23 @@ const Login = () => {
                 >
                   Password
                 </label>
-                <input
-                  className="w-full border border-gray-400 p-2 rounded-lg"
+                <Field
+                  className={`${
+                    touched.password && errors.password
+                      ? "border-red-500 outline-red-500"
+                      : "border-gray-400"
+                  }  w-full border  p-2 rounded-lg`}
                   type="password"
                   value={values.password}
                   onChange={handleChange}
                   id="password"
                   placeholder="Password"
+                  required
+                />
+                <ErrorMessage
+                  component="div"
+                  name="password"
+                  className="text-red-500"
                 />
               </div>
               <div className="text-center">

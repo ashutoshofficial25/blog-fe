@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex relative flex-wrap justify-center gap-10  m-20 max-sm:m-10">
+    <div className="flex relative flex-wrap justify-center gap-10  m-20 max-sm:m-10 min-h-screen ">
       {blogs.length == 0 ? (
         <h2 className="text-center text-gray-500 text-2xl font-bold!">
           No blogs found
@@ -32,9 +32,6 @@ const Home = () => {
       ) : (
         blogs.map((blog) => <BlogCard key={blog._id} blog={blog} />)
       )}
-      <Link to="/newblog" className="fixed bottom-10 right-10 ">
-        <IconButton image={createIcon} />
-      </Link>{" "}
     </div>
   );
 };

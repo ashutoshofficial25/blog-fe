@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { ErrorMessage, Field, Formik } from "formik";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -66,16 +66,25 @@ const Signup = () => {
                 >
                   Full Name
                 </label>
-                <input
-                  className="w-full border border-gray-400 p-2 rounded-lg"
+                <Field
+                  className={`${
+                    touched.fullname && errors.fullname
+                      ? "border-red-500 outline-red-500"
+                      : "border-gray-400"
+                  }  w-full border  p-2 rounded-lg`}
                   type="fullname"
                   id="fullname"
                   onBlur={handleBlur}
                   value={values.fullname}
                   onChange={handleChange}
                   placeholder="Full Name"
+                  required
                 />
-                {/* {errors.fullname && touched.fullname && <div>error</div>} */}
+                <ErrorMessage
+                  component="div"
+                  name="fullname"
+                  className="text-red-500"
+                />
               </div>
               <div className="mb-4">
                 <label
@@ -84,13 +93,23 @@ const Signup = () => {
                 >
                   Email
                 </label>
-                <input
-                  className="w-full border border-gray-400 p-2 rounded-lg"
+                <Field
+                  className={`${
+                    touched.email && errors.email
+                      ? "border-red-500 outline-red-500"
+                      : "border-gray-400"
+                  }  w-full border  p-2 rounded-lg`}
                   value={values.email}
                   onChange={handleChange}
                   type="email"
                   id="email"
                   placeholder="Email"
+                  required
+                />
+                <ErrorMessage
+                  component="div"
+                  name="email"
+                  className="text-red-500"
                 />
               </div>
               <div className="mb-4">
@@ -100,13 +119,23 @@ const Signup = () => {
                 >
                   Password
                 </label>
-                <input
-                  className="w-full border border-gray-400 p-2 rounded-lg"
+                <Field
+                  className={`${
+                    touched.password && errors.password
+                      ? "border-red-500 outline-red-500"
+                      : "border-gray-400"
+                  }  w-full border  p-2 rounded-lg`}
                   type="password"
                   value={values.password}
                   onChange={handleChange}
                   id="password"
                   placeholder="Password"
+                  required
+                />
+                <ErrorMessage
+                  component="div"
+                  name="password"
+                  className="text-red-500"
                 />
               </div>
               <div className="text-center">

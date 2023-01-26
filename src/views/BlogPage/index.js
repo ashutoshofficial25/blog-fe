@@ -29,11 +29,7 @@ const BlogPage = () => {
   }, [id]);
 
   return (
-    <div className="blog mx-20 my-10 relative max-sm:m-10">
-      <Link to="/" className="fixed top-28 left-20 max-sm:top-12 max-sm:left-8">
-        {" "}
-        <IconButton image={homeIcon} />
-      </Link>
+    <div className="blog mx-20 my-10 relative max-sm:m-10 min-h-screen ">
       {blogDetail ? (
         <>
           <h1 className="text-2xl font-bold text-center my-10">
