@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NotFound from "./404";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Login from "./views/Auth/Login";
@@ -24,6 +25,9 @@ function App() {
 
           {/* Private Routes */}
           <Route path="/manageblog" element={<Manageblogs />} />
+
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

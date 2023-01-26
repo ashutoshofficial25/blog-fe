@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex relative flex-wrap justify-center gap-10  m-20 max-sm:m-10 min-h-screen ">
+    <div className="min-h-screen w-full flex gap-5 justify-center items-center flex-wrap">
       {blogs.length == 0 ? (
         <h2 className="text-center text-gray-500 text-2xl font-bold!">
           No blogs found

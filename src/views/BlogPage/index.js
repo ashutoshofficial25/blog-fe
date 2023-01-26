@@ -29,7 +29,7 @@ const BlogPage = () => {
   }, [id]);
 
   return (
-    <div className="blog mx-20 my-10 relative max-sm:m-10 min-h-screen ">
+    <div className="blog px-20 py-10  max-sm:m-10 min-h-screen ">
       {blogDetail ? (
         <>
           <h1 className="text-2xl font-bold text-center my-10">

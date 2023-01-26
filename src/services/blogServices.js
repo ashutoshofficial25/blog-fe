@@ -27,3 +27,23 @@ export const getBlogDetails = async (id) => {
     return error.response.data;
   }
 };
+
+export const updateBlog = async (id, payload) => {
+  try {
+    const request = await axios.patch(
+      `${constants.BASE_URL}/blog/${id}`,
+      payload
+    );
+    return request.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+export const deleteBlog = async (id) => {
+  try {
+    const request = await axios.delete(`${constants.BASE_URL}/blog/${id}`);
+    return request.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
