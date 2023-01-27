@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import Button from "../../components/Button";
 import { userLogin } from "../../feature/userSlice";
 import { loginSchema } from "../../schemas/loginSchema";
-import { login } from "../../services/authServices";
+import { login, setSession } from "../../services/authServices";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -30,12 +30,13 @@ const Login = () => {
         timer: 1500,
       });
     }
-    localStorage.setItem("token", data.token);
+
     dispatch(
       userLogin({
         user: data.user,
       })
     );
+    await setSession(data.token, data.user);
     Swal.fire({
       position: "top-end",
       icon: "success",

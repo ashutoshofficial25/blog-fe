@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { redirect } from "react-router-dom";
 import Loading from "../../Loading";
@@ -46,7 +46,7 @@ const Auth = ({ children }) => {
 
     setSession(token, account);
     dispatch({
-      user: response.user,
+      user: account,
     });
     setLoading(false);
   };

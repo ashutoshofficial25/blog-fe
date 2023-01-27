@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./404";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Auth from "./views/Auth/Auth";
 import Login from "./views/Auth/Login";
 import Signup from "./views/Auth/Signup";
 import BlogPage from "./views/BlogPage";
@@ -24,7 +25,15 @@ function App() {
           <Route path="/newblog" element={<NewBlog />} />
 
           {/* Private Routes */}
-          <Route path="/manageblog" element={<Manageblogs />} />
+
+          <Route
+            path="/manageblog"
+            element={
+              <Auth>
+                <Manageblogs />
+              </Auth>
+            }
+          />
 
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
