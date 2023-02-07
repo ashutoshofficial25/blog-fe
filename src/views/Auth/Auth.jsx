@@ -16,16 +16,16 @@ const Auth = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const init = async () => {
     const token = await getToken();
 
     //chheck if token is there an valid
-    if (!token || !await verifyToken(token)) {
-      
+    if (!token || !(await verifyToken(token))) {
       console.log("Token is invalid", token);
+      localStorage.removeItem("account");
+      localStorage.removeItem("token");
       setLoading(false);
-      navigate("/login"); 
+      navigate("/login");
     }
 
     const account = await getAccount();
