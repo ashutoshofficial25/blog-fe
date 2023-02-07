@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading";
+import { userLogin } from "../../feature/userSlice";
 
 import {
   getAccount,
@@ -13,15 +14,18 @@ import {
 const Auth = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const init = async () => {
     const token = await getToken();
 
     //chheck if token is there an valid
-    if (!token || verifyToken(token)) {
+    if (!token || !await verifyToken(token)) {
+      
       console.log("Token is invalid", token);
       setLoading(false);
-      redirect("/login");
+      navigate("/login"); 
     }
 
     const account = await getAccount();
@@ -29,11 +33,11 @@ const Auth = ({ children }) => {
       loginWithToken().then((response) => {
         setLoading(false);
         if (!response) {
-          return redirect("/login");
+          return navigate("/login");
         }
 
         if (response.error) {
-          return redirect("/login");
+          return navigate("/login");
         }
         //set toke and session
         setSession(response.token, response.user);
@@ -44,10 +48,14 @@ const Auth = ({ children }) => {
       });
     }
 
-    setSession(token, account);
-    dispatch({
-      user: account,
-    });
+    await setSession(token, account);
+    console.log(account);
+
+    dispatch(
+      userLogin({
+        user: account,
+      })
+    );
     setLoading(false);
   };
 

@@ -11,36 +11,36 @@ import Manageblogs from "./views/Manageblog";
 import NewBlog from "./views/NewBlog";
 
 function App() {
-  return (
-    <div className="font-sans bg-gray-200" data-color-mode="light">
-      <BrowserRouter>
-        <Navbar />
+   return (
+      <div className="font-sans bg-gray-200" data-color-mode="light">
+         <BrowserRouter>
+            <Auth>
+               <Navbar />
+            </Auth>
+            <Routes>
+               {/* Public routes */}
+               <Route path="/login" element={<Login />} />
+               <Route path="/signup" element={<Signup />} />
+               <Route path="/" element={<Home />} />
+               <Route path="/blog/:id" element={<BlogPage />} />
 
-        <Routes>
-          {/* Public routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/blog/:id" element={<BlogPage />} />
-          <Route path="/newblog" element={<NewBlog />} />
+               {/* Private Routes */}
+               <Route path="/newblog" element={<NewBlog />} />
+               <Route
+                  path="/manageblog"
+                  element={
+                     <Auth>
+                        <Manageblogs />
+                     </Auth>
+                  }
+               />
 
-          {/* Private Routes */}
-
-          <Route
-            path="/manageblog"
-            element={
-              <Auth>
-                <Manageblogs />
-              </Auth>
-            }
-          />
-
-          {/* 404 */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+               {/* 404 */}
+               <Route path="*" element={<NotFound />} />
+            </Routes>
+         </BrowserRouter>
+      </div>
+   );
 }
 
 export default App;
