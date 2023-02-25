@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import BlogCard from "../../components/BlogCard";
-import Button from "../../components/Button";
-import IconButton from "../../components/IconButton";
 import { getAllBlogs } from "../../services/blogServices";
-import createIcon from "../../static/create.png";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);

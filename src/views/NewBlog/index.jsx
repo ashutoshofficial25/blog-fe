@@ -2,13 +2,10 @@ import MDEditor from "@uiw/react-md-editor";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Button from "../../components/Button";
-import IconButton from "../../components/IconButton";
 import { addNewBlog } from "../../services/blogServices";
 import { uploadImage } from "../../services/fileUpoload";
-import homeIcon from "../../static/home.png";
 
 const NewBlog = () => {
   const [content, setContent] = useState("");

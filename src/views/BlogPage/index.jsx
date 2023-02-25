@@ -1,9 +1,7 @@
-import MDEditor from "@uiw/react-md-editor";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import IconButton from "../../components/IconButton";
+import MDEditor from "@uiw/react-md-editor";
+import { useParams } from "react-router-dom";
 import { getBlogDetails } from "../../services/blogServices";
-import homeIcon from "../../static/home.png";
 
 const BlogPage = () => {
   const [blogDetail, setBlogDetail] = useState(null);

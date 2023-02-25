@@ -1,6 +1,5 @@
-import { ErrorMessage, Field, Formik } from "formik";
 import React from "react";
-import { useSelector } from "react-redux";
+import { ErrorMessage, Field, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { SignupSchema } from "../../schemas/signupSchema";

@@ -1,9 +1,8 @@
-import { ErrorMessage, Field, Formik } from "formik";
 import React from "react";
+import { ErrorMessage, Field, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Button from "../../components/Button";
 import { userLogin } from "../../feature/userSlice";
 import { loginSchema } from "../../schemas/loginSchema";
 import { login, setSession } from "../../services/authServices";
@@ -120,7 +119,7 @@ const Login = () => {
                   className="text-red-500"
                 />
               </div>
-              <div className="text-center">
+              <div className="text-center ">
                 <button className="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600">
                   Login
                 </button>
