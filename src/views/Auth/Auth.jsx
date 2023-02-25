@@ -25,7 +25,7 @@ const Auth = ({ children }) => {
       localStorage.removeItem("account");
       localStorage.removeItem("token");
       setLoading(false);
-      navigate("/login");
+      navigate("/");
     }
 
     const account = await getAccount();
