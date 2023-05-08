@@ -4,9 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { SignupSchema } from "../../schemas/signupSchema";
 import { signup } from "../../services/authServices";
+import { useState } from "react";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const initialState = {
     fullname: "",
@@ -15,8 +17,9 @@ const Signup = () => {
   };
 
   const handleSignup = async (formdata) => {
+    setIsLoading(true);
     const data = await signup(formdata);
-
+    setIsLoading(false);
     if (data.error) {
       return Swal.fire({
         position: "top-end",
@@ -142,7 +145,7 @@ const Signup = () => {
                   type="submit"
                   className="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600"
                 >
-                  Singup
+                  {isLoading ? "Loading..." : "Singup"}
                 </button>
               </div>
               <div className="mt-4 mb-2 text-center">

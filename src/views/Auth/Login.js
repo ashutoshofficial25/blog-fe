@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import { login, setSession } from "../../services/authServices";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const initialState = {
     email: "",
@@ -17,8 +18,9 @@ const Login = () => {
   };
 
   const handleLogin = async (formdata) => {
+    setLoading(true);
     const data = await login(formdata);
-
+    setLoading(false);
     console.log(data);
     if (data.error) {
       return Swal.fire({
@@ -121,7 +123,7 @@ const Login = () => {
               </div>
               <div className="text-center ">
                 <button className="bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600">
-                  Login
+                  {loading ? "Loading..." : "Login"}
                 </button>
               </div>
               <div className="mt-4 mb-2 text-center">
